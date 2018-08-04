@@ -119,6 +119,6 @@ export default createDrawerNavigator(
     QuizStack,
   },
   {
-    initialRouteName: 'QuizStack',
+    initialRouteName: 'RiskProfileStack',
   }
 );
