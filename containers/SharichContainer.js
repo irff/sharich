@@ -1,7 +1,7 @@
 import { Container } from 'unstated';
 
 const NUMBER = 'number';
-const MULTIPLE_CHOICE = 'multiple_choice'
+const MULTIPLE_CHOICE = 'multiple_choice';
 
 class SharichContainer extends Container {
     state = {
