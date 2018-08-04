@@ -1,25 +1,24 @@
-import React from 'react';
+import React from "react";
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
   Button
-} from 'react-native';
-import { WebBrowser } from 'expo';
-import { MaterialIcons } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
+} from "react-native";
+import { WebBrowser } from "expo";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Text } from "../components/StyledText";
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Home',
+      headerTitle: "Home",
       headerLeft: (
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
-          <MaterialIcons name='menu' size={32}/>
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+          <MaterialIcons name="menu" size={24} />
         </TouchableOpacity>
       )
     };
@@ -29,25 +28,29 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.half}>
-          <Image 
-            source={require('../assets/images/home-img.png')}
-          />
+          <Image source={require("../assets/images/home-img.png")} />
         </View>
-        <View style={styles.half} contentContainerStyle={styles.contentContainer}>
+        <View
+          style={styles.half}
+          contentContainerStyle={styles.contentContainer}
+        >
           <Text>Welcoming You to Sharia</Text>
-          <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Text>
+          <Text>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s.
+          </Text>
         </View>
-        <Button title={'I\'m So Ready!'}/>
+        <Button title={"I'm So Ready!"} />
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
   contentContainer: {
     paddingTop: 30,

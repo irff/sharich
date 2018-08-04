@@ -1,8 +1,11 @@
-import React from 'react';
-import { Text } from 'react-native';
+import styled from "styled-components";
+import { propMixin } from "./utils";
 
-export class MonoText extends React.Component {
-  render() {
-    return <Text {...this.props} style={[this.props.style, { fontFamily: 'poppins-medium' }]} />;
-  }
-}
+export const Text = styled.Text`
+  font-family: poppins-medium;
+  ${propMixin("fontSize", "size")};
+`;
+
+export const Bold = Text.extend`
+  font-family: poppins-bold;
+`;
