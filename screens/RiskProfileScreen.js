@@ -7,8 +7,10 @@ import {
 } from 'react-native';
 import { Subscribe, Provider } from 'unstated';
 import RiskProfileContainer from '../containers/RiskProfileContainer';
-import { Text } from "../components/StyledText";
+import { Text, Bold } from "../components/StyledText";
 import { PieChart } from 'react-native-svg-charts';
+import { Box } from '../components/Box';
+import { InputStyle } from '../components/common';
 
 class PieChartRisk extends React.PureComponent {
   render() {
@@ -47,34 +49,45 @@ export default class RiskProfileScreen extends React.Component {
         <Subscribe to={[RiskProfileContainer]}>
           {riskProfile => (
             <ScrollView>
-              
               <ScrollView horizontal>
               {
                 riskProfile.state.riskProfile.map((risk, idx) => (
                   <TouchableOpacity onPress={() => riskProfile.select(idx)}>
-                    <Text>{risk.title}</Text>
+                    <CoolBox px={18}>
+                      <Text>{risk.title}</Text>
+                    </CoolBox>
                   </TouchableOpacity>
                   )
                 )
               }
               </ScrollView>
+              <Box p={24}>
+                <Text>Risk Profile</Text>
+                <Bold size={18}>{riskProfile.state.riskProfile[riskProfile.state.selected].title}</Bold>
 
-              <Text>Risk Profile: {riskProfile.state.riskProfile[riskProfile.state.selected].title}</Text>
-              <Text>{riskProfile.state.riskProfile[riskProfile.state.selected].description}</Text>
+                <Box><Text>Recommended</Text></Box>
 
-              <PieChartRisk state={riskProfile.state}/>
+                <CoolBox p={18}>
+                  <Text>{riskProfile.state.riskProfile[riskProfile.state.selected].description}</Text>
+                </CoolBox>
 
-              {
-                riskProfile.state.assetClass.map((asset, idx) => (
-                  <View>
-                    <Text>{asset.title}: {riskProfile.state.assets[riskProfile.state.selected][idx]}%</Text>
-                    <Text>{asset.description}</Text>
-                  </View>
+                <PieChartRisk state={riskProfile.state}/>
+
+                {
+                  riskProfile.state.assetClass.map((asset, idx) => (
+                    <CoolBox my={0.25} p={6}>
+                      <Text>{asset.title}: {riskProfile.state.assets[riskProfile.state.selected][idx]}%</Text>
+                      {
+                        riskProfile.state.expanded[idx] && <Text>{asset.description}</Text>
+                      }
+                      <Button title='See description' onPress={() => riskProfile.toggleExpand(idx)}/>
+                    </CoolBox>
+                    )
                   )
-                )
-              }
-              <Button title='Choose this Risk Profile' />
-              <Button title='Retake this Test' />
+                }
+                <Button title='Choose this Risk Profile' />
+                <Button title='Retake this Test' />
+              </Box>
             </ScrollView>
           )}
         </Subscribe>
@@ -83,3 +96,6 @@ export default class RiskProfileScreen extends React.Component {
   }
 }
 
+const CoolBox = Box.extend`
+  ${InputStyle};
+`;

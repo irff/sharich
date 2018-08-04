@@ -3,6 +3,7 @@ import { Container } from 'unstated';
 class RiskProfileContainer extends Container {
     state = {
         selected: 0,
+        expanded: [false, false, false, false],
         riskProfile: [
             {
                 title: 'Agressive',
@@ -55,6 +56,12 @@ class RiskProfileContainer extends Container {
 
     select(value) {
         this.setState({ selected: value });
+    }
+
+    toggleExpand(index) {
+        let newExpanded = this.state.expanded;
+        newExpanded[index] = !newExpanded[index];
+        this.setState({ expanded: newExpanded});
     }
 }
 
