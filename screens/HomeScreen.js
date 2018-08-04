@@ -42,8 +42,11 @@ export default class HomeScreen extends React.Component {
             </View>
 
             <Text style={styles.getStartedText}>
-              Bismillah
+              Tri Irfan
             </Text>
+            <MonoText style={styles.getStartedText}>
+              Tri Irfan
+            </MonoText>
           </View>
 
           <View style={styles.helpContainer}>
@@ -141,9 +144,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   getStartedText: {
-    fontSize: 17,
+    fontSize: 30,
     color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
+    lineHeight: 42,
     textAlign: 'center',
   },
   tabBarInfoContainer: {
