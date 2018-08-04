@@ -41,6 +41,9 @@ class RiskProfileContainer extends Container {
                 title: 'Cash',
                 description: 'Cash is an integral part of building any investment portfolio. It is the only asset class that doesn\'t pose any capital risk - meaning that you won\'t lose any actual money by keeping your money in cash. Your allocation to cash is based on the risk/reward trade off - the more you have in cash, the lower returns you might receive.'
             }
+        ],
+        assets: [
+            []
         ]
     };
 }

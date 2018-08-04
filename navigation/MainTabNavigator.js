@@ -8,6 +8,8 @@ import FrontScreen from '../screens/FrontScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import QuizScreen from '../screens/QuizScreen';
+import RiskProfileScreen from '../screens/RiskProfileScreen';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -55,6 +57,20 @@ LinksStack.navigationOptions = {
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+    />
+  ),
+};
+
+const RiskProfileStack = createStackNavigator({
+  RiskProfil: RiskProfileScreen,
+});
+
+RiskProfileStack.navigationOptions = {
+  drawerLabel: 'Risk Profile',
+  drawerIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
     />
   ),
 };
