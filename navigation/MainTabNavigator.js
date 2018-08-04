@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import FrontScreen from '../screens/FrontScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import QuizScreen from '../screens/QuizScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -72,9 +73,29 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createDrawerNavigator({
-  HomeStack,
-  FrontStack,
-  LinksStack,
-  SettingsStack,
+const QuizStack = createStackNavigator({
+  Quiz: QuizScreen,
 });
+
+QuizStack.navigationOptions = {
+  drawerLabel: 'Quiz',
+  drawerIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+    />
+  ),
+};
+
+export default createDrawerNavigator(
+  {
+    HomeStack,
+    FrontStack,
+    LinksStack,
+    SettingsStack,
+    QuizStack,
+  },
+  {
+    initialRouteName: 'QuizStack',
+  }
+);
