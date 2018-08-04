@@ -73,9 +73,16 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-const QuizStack = createStackNavigator({
-  Quiz: QuizScreen,
-});
+const QuizStack = createStackNavigator(
+  {
+    Quiz: QuizScreen,
+  },
+  {
+    navigationOptions: {
+      header: null,
+    },
+  }
+);
 
 QuizStack.navigationOptions = {
   drawerLabel: 'Quiz',
