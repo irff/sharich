@@ -4,11 +4,16 @@ import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import OldHomeScreen from '../screens/OldHomeScreen';
 import FrontScreen from '../screens/FrontScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import QuizScreen from '../screens/QuizScreen';
 import RiskProfileScreen from '../screens/RiskProfileScreen';
+<<<<<<< HEAD
+=======
+import DashboardScreen from '../screens/DashboardScreen';
+>>>>>>> DashboardScreen
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -16,6 +21,24 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   drawerLabel: 'Home',
+  drawerIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+const OldHomeStack = createStackNavigator({
+  OldHome: OldHomeScreen,
+});
+
+OldHomeStack.navigationOptions = {
+  drawerLabel: 'OldHome',
   drawerIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -74,6 +97,20 @@ RiskProfileStack.navigationOptions = {
   ),
 };
 
+const DashboardStack = createStackNavigator({
+  Dashboard: DashboardScreen,
+});
+
+DashboardStack.navigationOptions = {
+  drawerLabel: 'Dashboard',
+  drawerIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+    />
+  ),
+};
+
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
@@ -112,13 +149,15 @@ QuizStack.navigationOptions = {
 export default createDrawerNavigator(
   {
     HomeStack,
+    OldHomeStack,
     FrontStack,
     LinksStack,
     SettingsStack,
+    DashboardStack,
     RiskProfileStack,
     QuizStack,
   },
   {
-    initialRouteName: 'RiskProfileStack',
+    initialRouteName: 'DashboardStack',
   }
 );

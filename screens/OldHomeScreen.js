@@ -13,7 +13,7 @@ import { WebBrowser } from 'expo';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+export default class OldHomeScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerTitle: 'Home',
