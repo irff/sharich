@@ -116,9 +116,10 @@ export default createDrawerNavigator(
     FrontStack,
     LinksStack,
     SettingsStack,
+    RiskProfileStack,
     QuizStack,
   },
   {
-    initialRouteName: 'QuizStack',
+    initialRouteName: 'RiskProfileStack',
   }
 );

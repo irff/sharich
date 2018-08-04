@@ -2,6 +2,7 @@ import { Container } from 'unstated';
 
 class RiskProfileContainer extends Container {
     state = {
+        selected: 0,
         riskProfile: [
             {
                 title: 'Agressive',
@@ -43,9 +44,18 @@ class RiskProfileContainer extends Container {
             }
         ],
         assets: [
-            []
-        ]
+            [70, 20, 10, 0],
+            [50, 30, 10, 10],
+            [40, 50, 10, 10],
+            [30, 40, 20, 10],
+            [10, 20, 30, 40]
+        ],
+        colors: ['#feca57', '#1dd1a1', '#54a0ff', '#ff9ff3']
     };
+
+    select(value) {
+        this.setState({ selected: value });
+    }
 }
 
 export default RiskProfileContainer;

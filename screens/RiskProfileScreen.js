@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-    View
+  Button,
+  ScrollView,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { Subscribe, Provider } from 'unstated';
 import RiskProfileContainer from '../containers/RiskProfileContainer';
@@ -9,16 +12,16 @@ import { PieChart } from 'react-native-svg-charts';
 
 class PieChartRisk extends React.PureComponent {
   render() {
-    const data = [40, 30, 20, 10]
-
-    const randomColor = () => ('#' + (Math.random() * 0xFFFFFF << 0).toString(16) + '000000').slice(0, 7)
+    const selected = this.props.state.selected;
+    const data = this.props.state.assets[selected];
+    const colors = this.props.state.colors;
 
     const pieData = data
         .filter(value => value > 0)
         .map((value, index) => ({
             value,
             svg: {
-                fill: randomColor(),
+                fill: colors[index],
                 onPress: () => console.log('press', index),
             },
             key: `pie-${index}`,
@@ -43,12 +46,40 @@ export default class RiskProfileScreen extends React.Component {
       <Provider>
         <Subscribe to={[RiskProfileContainer]}>
           {riskProfile => (
-            <View>
-              <PieChartRisk />
-            </View>
+            <ScrollView>
+              
+              <ScrollView horizontal>
+              {
+                riskProfile.state.riskProfile.map((risk, idx) => (
+                  <TouchableOpacity onPress={() => riskProfile.select(idx)}>
+                    <Text>{risk.title}</Text>
+                  </TouchableOpacity>
+                  )
+                )
+              }
+              </ScrollView>
+
+              <Text>Risk Profile: {riskProfile.state.riskProfile[riskProfile.state.selected].title}</Text>
+              <Text>{riskProfile.state.riskProfile[riskProfile.state.selected].description}</Text>
+
+              <PieChartRisk state={riskProfile.state}/>
+
+              {
+                riskProfile.state.assetClass.map((asset, idx) => (
+                  <View>
+                    <Text>{asset.title}: {riskProfile.state.assets[riskProfile.state.selected][idx]}%</Text>
+                    <Text>{asset.description}</Text>
+                  </View>
+                  )
+                )
+              }
+              <Button title='Choose this Risk Profile' />
+              <Button title='Retake this Test' />
+            </ScrollView>
           )}
         </Subscribe>
       </Provider>
     )
   }
 }
+
