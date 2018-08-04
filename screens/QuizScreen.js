@@ -1,63 +1,114 @@
 import React from 'react';
-import { ScrollView, TextInput } from 'react-native';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { Subscribe } from 'unstated';
 import styled from 'styled-components';
+import { mix } from 'polished';
+import { Formik } from 'formik';
 
 import QuizContainer, { NUMBER, CURRENCY, MULTIPLE_CHOICE } from '../containers/QuizContainer';
 import { Text, Bold } from '../components/StyledText';
 import { Box } from '../components/Box';
 import { InputStyle } from '../components/common';
-import pallete from '../styles/colors';
+import palette from '../styles/colors';
+import { GreenButton } from '../components/Button';
 
 export default class QuizScreen extends React.Component {
   static navigationOptions = {
     headerMode: 'none',
   };
 
+  submitAndNavigate = submitAnswer => values => {
+    submitAnswer([...Object.values(values)]);
+    this.props.navigation.navigate('HomeStack');
+  };
+
   render() {
     return (
       <Subscribe to={[QuizContainer]}>
-        {({ state }) => (
+        {({ state, submitAnswer }) => (
           <ScrollView>
-            <Box p={24} bg={pallete.white}>
-              <Box pt={26} pb={16}>
-                <Bold size={20}>Get to Know You</Bold>
-              </Box>
-              <Text size={12} color={pallete.warmGrey}>
-                Let us understand how’s your behaviour towards your financial circumstances. Please
-                answer these questions, only nine kok!
-              </Text>
-              {state.quiz.map(quiz => (
-                <Box py={16} key={quiz.question}>
-                  <Bold size={14}>{quiz.question}</Bold>
-                  {quiz.type === NUMBER && (
-                    <StyledTextInput
-                      underlineColorAndroid="transparent"
-                      selectionColor={pallete.primary}
-                      keyboardType="numeric"
-                    />
-                  )}
-                  {quiz.type === CURRENCY && (
-                    <InputBox flexDirection="row" alignItems="center">
-                      <Box mr={2}>
-                        <Text size={12} color={pallete.warmGrey}>
-                          IDR
-                        </Text>
+            <Formik initialValues={[]} onSubmit={this.submitAndNavigate(submitAnswer)}>
+              {({ values, setFieldValue, handleSubmit }) => (
+                <Box p={24} bg={palette.white}>
+                  <Box pt={26} pb={12}>
+                    <Bold size={20}>Get to Know You</Bold>
+                  </Box>
+                  <Text size={12} color={palette.warmGrey}>
+                    Let us understand how’s your behaviour towards your financial circumstances.
+                    Please answer these questions, only nine kok!
+                  </Text>
+                  {state.quiz.map((quiz, quizIndex) => (
+                    <Box py={16} key={quiz.question}>
+                      <Box mb={2}>
+                        <Bold size={14}>{quiz.question}</Bold>
                       </Box>
-                      <Box flex={1}>
-                        <TextInput
+                      {quiz.type === NUMBER && (
+                        <StyledTextInput
                           underlineColorAndroid="transparent"
-                          selectionColor={pallete.primary}
+                          selectionColor={palette.primary}
                           keyboardType="numeric"
-                          defaultValue="0"
+                          value={values[quizIndex]}
+                          onChangeText={text => setFieldValue(quizIndex, text)}
                         />
-                      </Box>
-                    </InputBox>
-                  )}
+                      )}
+                      {quiz.type === CURRENCY && (
+                        <InputBox flexDirection="row" alignItems="center">
+                          <Box mr={3}>
+                            <Text size={12} color={palette.warmGrey}>
+                              IDR
+                            </Text>
+                          </Box>
+                          <Box flex={1}>
+                            <TextInput
+                              underlineColorAndroid="transparent"
+                              selectionColor={palette.primary}
+                              keyboardType="numeric"
+                              defaultValue="0"
+                              value={values[quizIndex]}
+                              onChangeText={text => setFieldValue(quizIndex, text)}
+                            />
+                          </Box>
+                        </InputBox>
+                      )}
+                      {quiz.type === MULTIPLE_CHOICE &&
+                        quiz.choices.map((choice, idx) => (
+                          <TouchableOpacity
+                            onPress={() => setFieldValue(quizIndex, idx)}
+                            key={`${choice}-${idx}`}
+                          >
+                            <ChoiceBox selected={values[quizIndex] === idx}>
+                              <Box mr={3}>
+                                <Text
+                                  size={12}
+                                  color={
+                                    values[quizIndex] === idx
+                                      ? mix(0.7, palette.primary, palette.warmGrey)
+                                      : palette.warmGrey
+                                  }
+                                >
+                                  {String.fromCharCode('A'.charCodeAt(0) + idx)}
+                                </Text>
+                              </Box>
+                              <Box flex={1}>
+                                <Text
+                                  color={
+                                    values[quizIndex] === idx
+                                      ? mix(0.7, palette.primary, palette.black)
+                                      : palette.black
+                                  }
+                                >
+                                  {choice}
+                                </Text>
+                              </Box>
+                            </ChoiceBox>
+                          </TouchableOpacity>
+                        ))}
+                    </Box>
+                  ))}
+                  <GreenButton title="I'm All Set" onPress={handleSubmit} />
                 </Box>
-              ))}
-              <Text>{JSON.stringify(state, null, 2)}</Text>
-            </Box>
+              )}
+            </Formik>
           </ScrollView>
         )}
       </Subscribe>
@@ -71,4 +122,19 @@ const StyledTextInput = styled.TextInput`
 
 const InputBox = Box.extend`
   ${InputStyle};
+`;
+
+const ChoiceBox = styled(Box).attrs({
+  px: 16,
+  py: 12,
+  mb: 2,
+  flexDirection: 'row',
+  alignItems: 'center',
+})`
+  background-color: ${props =>
+    props.selected ? mix(0.7, palette.primary, palette.ivory) : palette.ivory};
+  border-width: 1;
+  border-color: ${props =>
+    props.selected ? mix(0.7, palette.primary, palette.ivoryBorder) : palette.ivoryBorder};
+  border-radius: 2;
 `;

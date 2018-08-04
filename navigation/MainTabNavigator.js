@@ -10,7 +10,6 @@ import SettingsScreen from '../screens/SettingsScreen';
 import QuizScreen from '../screens/QuizScreen';
 import RiskProfileScreen from '../screens/RiskProfileScreen';
 
-
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
@@ -120,6 +119,6 @@ export default createDrawerNavigator(
     QuizStack,
   },
   {
-    initialRouteName: 'RiskProfileStack',
+    initialRouteName: 'QuizStack',
   }
 );
