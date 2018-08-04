@@ -10,10 +10,7 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import QuizScreen from '../screens/QuizScreen';
 import RiskProfileScreen from '../screens/RiskProfileScreen';
-<<<<<<< HEAD
-=======
 import DashboardScreen from '../screens/DashboardScreen';
->>>>>>> DashboardScreen
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
