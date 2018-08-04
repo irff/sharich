@@ -20,6 +20,9 @@ function Profile() {
 }
 
 export default class FrontScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Front Page'
+    }
     render() {
         return (<Provider>
                     <Profile />

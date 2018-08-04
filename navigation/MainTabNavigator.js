@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -13,8 +13,8 @@ const HomeStack = createStackNavigator({
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
+  drawerLabel: 'Home',
+  drawerIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
@@ -31,8 +31,8 @@ const FrontStack = createStackNavigator({
 });
 
 FrontStack.navigationOptions = {
-  tabBarLabel: 'Front',
-  tabBarIcon: ({ focused }) => (
+  drawerLabel: 'Front',
+  drawerIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
@@ -49,8 +49,8 @@ const LinksStack = createStackNavigator({
 });
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
+  drawerLabel: 'Links',
+  drawerIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
@@ -63,8 +63,8 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
+  drawerLabel: 'Settings',
+  drawerIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
@@ -72,7 +72,7 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
+export default createDrawerNavigator({
   HomeStack,
   FrontStack,
   LinksStack,
