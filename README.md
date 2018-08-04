@@ -1,0 +1,2 @@
+# sharich
+Shariah and rich
