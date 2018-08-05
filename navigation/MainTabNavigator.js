@@ -4,7 +4,6 @@ import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import FrontScreen from '../screens/FrontScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import QuizScreen from '../screens/QuizScreen';
@@ -19,24 +18,6 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   drawerLabel: 'Home',
-  drawerIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-
-const FrontStack = createStackNavigator({
-  Front: FrontScreen,
-});
-
-FrontStack.navigationOptions = {
-  drawerLabel: 'Front',
   drawerIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -169,7 +150,6 @@ QuizStack.navigationOptions = {
 export default createDrawerNavigator(
   {
     HomeStack,
-    FrontStack,
     LinksStack,
     SettingsStack,
     DashboardStack,

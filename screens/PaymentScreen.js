@@ -12,15 +12,18 @@ import PaymentContainer from '../containers/PaymentContainer';
 
 export default class PaymentScreen extends React.Component {
   static navigationOptions = {
-    title: 'Make Payment',
+    header: null,
   };
 
   render() {
     return (
       <Subscribe to={[PaymentContainer]}>
         {({ state }) => (
-          <Box flex={1} background={palette.white} pt={3}>
-            <Box mx={3} flex={1}>
+          <Box flex={1} background={palette.white}>
+            <HeaderBox alignItems="center">
+              <Bold>Make Payment</Bold>
+            </HeaderBox>
+            <Box mx={3} flex={1} pt={3}>
               <Box>
                 <Bold size={14} color={palette.warmGrey}>
                   Investment Amount
@@ -112,4 +115,11 @@ const CoolBox = Box.extend`
 
 const InputBox = Box.extend`
   ${InputStyle};
+`;
+
+const HeaderBox = Box.extend`
+  ${InputStyle};
+  padding-top: 42;
+  padding-bottom: 16;
+  elevation: 6;
 `;

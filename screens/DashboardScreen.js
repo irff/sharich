@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ScrollView, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Subscribe } from 'unstated';
 import { LinearGradient } from 'expo';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -55,7 +55,7 @@ export default class DashboardScreen extends React.Component {
                     <MaterialIcons name="menu" size={24} color={palette.white} />
                   </Box>
                 </TouchableOpacity>
-                <Box alignItems="center" flex={1}>
+                <Box alignItems="center" flex={1} ml={-3}>
                   <Bold size={16} color={palette.white}>
                     Dashboard
                   </Bold>
@@ -73,7 +73,7 @@ export default class DashboardScreen extends React.Component {
                     <Box p={2}>
                       <Bold color={palette.white}>Day to Day Performance</Bold>
                     </Box>
-                    <Image source={require('../assets/images/grafik.png')} width="100%" />
+                    <Box ml={-4}><Image source={require('../assets/images/grafik.png')} width={Dimensions.get('screen').width} /></Box>
                   </Box>
                 </LinearGradient>
                 <Box mx={3}>

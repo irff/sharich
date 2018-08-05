@@ -12,7 +12,7 @@ class PaymentContainer extends Container {
         transfer: {
             number: '8881 0824 09',
             name: 'Bank Syariah Mandiri',
-            holder: 'PT. Hife Financial Indonesia'
+            holder: 'PT. Hive Financial Indonesia'
         }
     }
 

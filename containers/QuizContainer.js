@@ -84,7 +84,9 @@ class QuizContainer extends Container {
   };
 
   answer = (idx, answer) =>
-    this.setState(state => produce(state, draft => (draft.quiz[idx].answer = answer)));
+    this.setState(state => produce(state, draft => {
+      draft.quiz[idx].answer = answer;
+    }));
 }
 
 export default QuizContainer;
