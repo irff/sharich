@@ -11,6 +11,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import QuizScreen from '../screens/QuizScreen';
 import RiskProfileScreen from '../screens/RiskProfileScreen';
 import DashboardScreen from '../screens/DashboardScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -122,6 +123,20 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const PaymentStack = createStackNavigator({
+  Payment: PaymentScreen,
+});
+
+PaymentStack.navigationOptions = {
+  drawerLabel: 'Payment',
+  drawerIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+    />
+  ),
+};
+
 const QuizStack = createStackNavigator(
   {
     Quiz: QuizScreen,
@@ -153,6 +168,7 @@ export default createDrawerNavigator(
     DashboardStack,
     RiskProfileStack,
     QuizStack,
+    PaymentStack
   },
   {
     initialRouteName: 'DashboardStack',
