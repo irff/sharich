@@ -8,6 +8,8 @@ const palette = {
   green: '#68cd81',
   skyBlue: '#62aaff',
   aquaGreen: '#18d89f',
+  positive: '#58af4c',
+  negative: '#df5475',
 };
 
 export default palette;

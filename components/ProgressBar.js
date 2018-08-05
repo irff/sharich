@@ -35,10 +35,16 @@ const Dot = styled.View`
   margin-left: -4;
   z-index: 1;
   background-color: ${props => props.color};
+  elevation: 1;
 `;
 
 const DummyView = styled.View`
   flex: ${props => props.width};
+  margin-left: -4;
+  height: 4;
+  border-bottom-right-radius: 4;
+  border-top-right-radius: 4;
+  background-color: ${palette.warmGrey};
 `;
 
 export default ProgressBar;

@@ -31,7 +31,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.half}>
-          <Image source={require('../assets/images/home-img.png')} />
+          <Image source={require('../assets/images/il-welcome.png')} />
         </View>
         <View style={styles.half} contentContainerStyle={styles.contentContainer}>
           <Text>Welcoming You to Sharia</Text>

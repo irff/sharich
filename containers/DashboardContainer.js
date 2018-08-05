@@ -1,8 +1,8 @@
 import { Container } from 'unstated';
 
-const ADD = 'add';
-const DEDUCT = 'deduct';
-const WITHDRAW = 'withdraw';
+export const TOP_UP = 'Top Up';
+export const ALLOCATE = 'Allocate';
+export const WITHDRAW = 'Withdraw';
 
 class DashboardContainer extends Container {
   state = {
@@ -45,11 +45,32 @@ class DashboardContainer extends Container {
           'you consider investment losses in any given year to be unacceptable. You like the security your investments offer.',
       },
     ],
-    assetAllocationValue: [960000, 720000, 480000, 0], // refer to RiskProfileContainer.assetClass
+    assetAllocationValue: [
+      {
+        balance: 960000,
+        invested: 927000,
+        performance: 0.035,
+      },
+      {
+        balance: 720000,
+        invested: 695000,
+        performance: -0.004,
+      },
+      {
+        balance: 509000,
+        invested: 463000,
+        performance: 0.109,
+      },
+      {
+        balance: 269000,
+        invested: 232000,
+        performance: 0.016,
+      },
+    ], // refer to RiskProfileContainer.assetClass
     assetAllocationPercent: [70, 20, 10, 0],
     transactions: [
       {
-        type: ADD,
+        type: TOP_UP,
         value: 1000000,
         date: '07-07-2018',
       },
@@ -59,17 +80,17 @@ class DashboardContainer extends Container {
         date: '06-07-2018',
       },
       {
-        type: DEDUCT,
+        type: ALLOCATE,
         value: 1000000,
         date: '05-07-2018',
       },
       {
-        type: ADD,
+        type: TOP_UP,
         value: 1000000,
         date: '02-07-2018',
       },
       {
-        type: ADD,
+        type: TOP_UP,
         value: 1000000,
         date: '01-07-2018',
       },
