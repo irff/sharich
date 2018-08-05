@@ -73,7 +73,12 @@ export default class DashboardScreen extends React.Component {
                     <Box p={2}>
                       <Bold color={palette.white}>Day to Day Performance</Bold>
                     </Box>
-                    <Box ml={-4}><Image source={require('../assets/images/grafik.png')} width={Dimensions.get('screen').width} /></Box>
+                    <Box ml={-4}>
+                      <Image
+                        source={require('../assets/images/grafik.png')}
+                        width={Dimensions.get('screen').width}
+                      />
+                    </Box>
                   </Box>
                 </LinearGradient>
                 <Box mx={3}>
@@ -211,7 +216,10 @@ export default class DashboardScreen extends React.Component {
               </ScrollView>
             </Box>
             <CoolBox radius={0}>
-              <GreenButton title="Top Up Balance"  onPress={() => this.props.navigation.navigate('Payment')}/>
+              <GreenButton
+                title="Top Up Balance"
+                onPress={() => this.props.navigation.navigate('Payment')}
+              />
             </CoolBox>
           </Box>
         )}
