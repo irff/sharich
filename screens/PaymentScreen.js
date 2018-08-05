@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  Button,
-  Picker
-} from 'react-native';
+import { ScrollView, TextInput, TouchableOpacity, Button, Picker } from 'react-native';
 import { Subscribe } from 'unstated';
 import styled from 'styled-components';
 
@@ -24,78 +18,96 @@ export default class PaymentScreen extends React.Component {
   render() {
     return (
       <Subscribe to={[PaymentContainer]}>
-      {({ state }) => (
-          <Box>
+        {({ state }) => (
+          <Box flex={1} background={palette.white} pt={3}>
+            <Box mx={3} flex={1}>
+              <Box>
+                <Bold size={14} color={palette.warmGrey}>
+                  Investment Amount
+                </Bold>
+                <InputBox flexDirection="row" alignItems="center" mt={2}>
+                  <Box mr={3}>
+                    <Text size={12} color={palette.warmGrey}>
+                      IDR
+                    </Text>
+                  </Box>
+                  <Box flex={1}>
+                    <TextInput
+                      underlineColorAndroid="transparent"
+                      selectionColor={palette.primary}
+                      keyboardType="numeric"
+                      defaultValue="0"
+                      value={'1200000'}
+                    />
+                  </Box>
+                </InputBox>
+              </Box>
 
-            <Box>
-              <Text>Investment Amount</Text>
-              <InputBox flexDirection="row" alignItems="center">
-                <Box mr={3}>
-                  <Text size={12} color={palette.warmGrey}>
-                  IDR
-                  </Text>
+              <Box my={3}>
+                <Bold size={14} color={palette.warmGrey}>
+                  Payment Method
+                </Bold>
+                <Box bg={palette.ivory} mt={2}>
+                  <Picker onValueChange={(value, idx) => () => state.selectPaymentMethod(value)}>
+                    {state.methods.map((method, idx) => (
+                      <Picker.Item key={method} label={method} value={method} />
+                    ))}
+                  </Picker>
                 </Box>
-                <Box flex={1}>
-                  <TextInput
-                  underlineColorAndroid="transparent"
-                  selectionColor={palette.primary}
-                  keyboardType="numeric"
-                  defaultValue="0"
-                  value={'1200000'}
-                  />
+              </Box>
+
+              <CoolBox>
+                <Box p={3}>
+                  <Box mb={2}>
+                    <Bold size={12} color={palette.warmGrey}>
+                      TRANSFER AMOUNT
+                    </Bold>
+                    <Text size={16}>{state.amount}</Text>
+                  </Box>
+
+                  <Box mb={2}>
+                    <Bold size={12} color={palette.warmGrey}>
+                      BANK ACCOUNT NO.
+                    </Bold>
+                    <Bold size={16} color={palette.primary}>
+                      {state.transfer.number}
+                    </Bold>
+                  </Box>
+
+                  <Box mb={2}>
+                    <Bold size={12} color={palette.warmGrey}>
+                      BANK NAME
+                    </Bold>
+                    <Text size={16}>{state.transfer.name}</Text>
+                  </Box>
+
+                  <Box mb={2}>
+                    <Bold size={12} color={palette.warmGrey}>
+                      BANK ACCOUNT HOLDER
+                    </Bold>
+                    <Text size={16}>{state.transfer.holder}</Text>
+                  </Box>
                 </Box>
-              </InputBox>
+              </CoolBox>
             </Box>
 
-            <Box>
-              <Text>Payment Method</Text>
-              <Picker
-                onValueChange={(value, idx) => (() => state.selectPaymentMethod(value))}
-              >
-                {
-                  state.methods.map( (method, idx) => (
-                    <Picker.Item label={method} value={method}/>
-                  ))
-                }
-              </Picker>
+            <Box m={3}>
+              <GreenButton
+                title="I've Paid the Amount Above"
+                onPress={() => this.props.navigation.navigate('PaymentReceived')}
+              />
             </Box>
-
-            <CoolBox>
-              <Box>
-                <Text>TRANSFER AMOUNT</Text>
-                <Text>{state.amount}</Text>
-              </Box>
-
-              <Box>
-                <Text>BANK ACCOUNT NO.</Text>
-                <Text>{state.transfer.number}</Text>
-              </Box>
-
-              <Box>
-                <Text>BANK NAME</Text>
-                <Text>{state.transfer.name}</Text>
-              </Box>
-
-              <Box>
-                <Text>BANK ACCOUNT HOLDER</Text>
-                <Text>{state.transfer.holder}</Text>
-              </Box>
-            </CoolBox>
-
-            <Box>
-              <Button title="I've Paid the Amount Above" onPress={() => this.props.navigation.navigate('PaymentReceived')}/>
-            </Box>
-
           </Box>
-
-      )}
+        )}
       </Subscribe>
-    )
+    );
   }
 }
 
 const CoolBox = Box.extend`
   ${InputStyle};
+  border-top-color: ${palette.primary};
+  border-top-width: 3;
 `;
 
 const InputBox = Box.extend`

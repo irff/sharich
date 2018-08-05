@@ -145,9 +145,14 @@ PaymentStack.navigationOptions = {
   ),
 };
 
-const PaymentReceivedStack = createStackNavigator({
-  PaymentReceived: PaymentReceivedScreen,
-});
+const PaymentReceivedStack = createStackNavigator(
+  {
+    PaymentReceived: PaymentReceivedScreen,
+  },
+  {
+    header: null,
+  }
+);
 
 PaymentReceivedStack.navigationOptions = {
   drawerLabel: 'PaymentReceived',
@@ -158,7 +163,6 @@ PaymentReceivedStack.navigationOptions = {
     />
   ),
 };
-
 
 const QuizStack = createStackNavigator(
   {
@@ -192,7 +196,7 @@ export default createDrawerNavigator(
     RiskProfileStack,
     QuizStack,
     PaymentStack,
-    PaymentReceivedStack
+    PaymentReceivedStack,
   },
   {
     initialRouteName: 'DashboardStack',
