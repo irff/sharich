@@ -7,4 +7,4 @@ Halal Investing For Everyone
 - Shylla Estee Pramadhani
 - Tri Ahmad Irfan
 
-_Copyright 2018. HIFE Team_
+_Copyright 2018. HIVE Team_

@@ -2,7 +2,7 @@ import { Container } from 'unstated';
 
 class PaymentContainer extends Container {
     state = {
-        amount: 1200000,
+        amount: 1400000,
         methods: [
             'Bank Transfer',
             'Card',

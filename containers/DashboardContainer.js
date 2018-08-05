@@ -8,15 +8,15 @@ class DashboardContainer extends Container {
   state = {
     riskProfileIdx: 0, // 0: aggressive, 4: conservative
     account: {
-      balance: 12500000,
-      invested: 11245000,
+      balance: 3612874,
+      invested: 3400000,
       profit: {
-        percent: 13.1,
-        value: 382000,
+        percent: 6.01,
+        value: 204340,
       },
       income: {
-        percent: 16.7,
-        value: 436000,
+        percent: 6.26,
+        value: 212874,
       },
     },
     riskProfile: [
@@ -47,47 +47,47 @@ class DashboardContainer extends Container {
     ],
     assetAllocationValue: [
       {
-        balance: 960000,
-        invested: 927000,
-        performance: 0.035,
+        balance: 2229720,
+        invested: 2040000,
+        performance: 0.093,
       },
       {
-        balance: 720000,
-        invested: 695000,
-        performance: -0.004,
+        balance: 840650,
+        invested: 850000,
+        performance: -0.012,
       },
       {
-        balance: 509000,
-        invested: 463000,
-        performance: 0.109,
+        balance: 369784,
+        invested: 340000,
+        performance: 0.0876,
       },
       {
-        balance: 269000,
-        invested: 232000,
+        balance: 172720,
+        invested: 170000,
         performance: 0.016,
       },
     ], // refer to RiskProfileContainer.assetClass
-    assetAllocationPercent: [70, 20, 10, 0],
+    assetAllocationPercent: [60, 25, 10, 5],
     transactions: [
       {
         type: TOP_UP,
-        value: 1000000,
-        date: '07-07-2018',
+        value: 1400000,
+        date: '05-08-2018',
       },
       {
         type: WITHDRAW,
         value: 50000,
-        date: '06-07-2018',
+        date: '04-08-2018',
       },
       {
         type: ALLOCATE,
-        value: 1000000,
-        date: '05-07-2018',
+        value: 2000000,
+        date: '02-08-2018',
       },
       {
         type: TOP_UP,
         value: 1000000,
-        date: '02-07-2018',
+        date: '01-08-2018',
       },
       {
         type: TOP_UP,

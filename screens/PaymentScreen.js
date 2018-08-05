@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, TextInput, TouchableOpacity, Button, Picker } from 'react-native';
 import { Subscribe } from 'unstated';
 import styled from 'styled-components';
-
+import numeral from 'numeral';
 import { Text, Bold } from '../components/StyledText';
 import { Box } from '../components/Box';
 import { InputStyle } from '../components/common';
@@ -37,7 +37,7 @@ export default class PaymentScreen extends React.Component {
                       selectionColor={palette.primary}
                       keyboardType="numeric"
                       defaultValue="0"
-                      value={'1200000'}
+                      value={state.amount.toString()}
                     />
                   </Box>
                 </InputBox>
@@ -62,7 +62,7 @@ export default class PaymentScreen extends React.Component {
                     <Bold size={12} color={palette.warmGrey}>
                       TRANSFER AMOUNT
                     </Bold>
-                    <Text size={16}>{state.amount}</Text>
+                    <Text size={16}>IDR {numeral(state.amount).format('0,0')}</Text>
                   </Box>
 
                   <Box mb={2}>

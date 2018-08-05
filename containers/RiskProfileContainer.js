@@ -53,7 +53,7 @@ class RiskProfileContainer extends Container {
       },
     ],
     assets: [
-      [70, 20, 10, 0],
+      [60, 25, 10, 5],
       [50, 30, 10, 10],
       [40, 50, 10, 10],
       [30, 40, 20, 10],
