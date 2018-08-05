@@ -156,7 +156,7 @@ export default class DashboardScreen extends React.Component {
               </ScrollView>
             </Box>
             <CoolBox radius={0}>
-              <GreenButton title="Top Up Balance" />
+              <GreenButton title="Top Up Balance"  onPress={() => this.props.navigation.navigate('Payment')}/>
             </CoolBox>
           </Box>
         )}

@@ -19,7 +19,7 @@ export default class QuizScreen extends React.Component {
 
   submitAndNavigate = submitAnswer => values => {
     submitAnswer([...Object.values(values)]);
-    this.props.navigation.navigate('HomeStack');
+    this.props.navigation.navigate('RiskProfile');
   };
 
   render() {

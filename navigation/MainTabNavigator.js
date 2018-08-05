@@ -83,7 +83,7 @@ LinksStack.navigationOptions = {
 };
 
 const RiskProfileStack = createStackNavigator({
-  RiskProfil: RiskProfileScreen,
+  RiskProfile: RiskProfileScreen,
 });
 
 RiskProfileStack.navigationOptions = {
