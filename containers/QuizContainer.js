@@ -12,37 +12,37 @@ class QuizContainer extends Container {
         type: NUMBER,
         question: 'What is your age?',
         choices: [],
-        answer: '',
+        answer: 24
       },
       {
         type: MULTIPLE_CHOICE,
         question: 'What is your primary reason for investing?',
         choices: ['General Savings', 'Retirement', 'College Savings', 'Other'],
-        answer: '',
+        answer: 0,
       },
       {
         type: MULTIPLE_CHOICE,
         question: 'When do you expect to start drawing income from this account?',
         choices: ['< 1 years', '1-3 years', '3–5 years', '6–10 years', '11 years or more'],
-        answer: '',
+        answer: 6,
       },
       {
         type: CURRENCY,
         question: 'Pre-tax annual income',
         choices: [],
-        answer: '',
+        answer: 180000000,
       },
       {
         type: CURRENCY,
         question: 'What’s your liquid net worth?',
         choices: [],
-        answer: '',
+        answer: 225000000,
       },
       {
         type: MULTIPLE_CHOICE,
         question: 'My income sources (current and future) are',
         choices: ['Very Unstable.', 'Unstable.', 'Somewhat Stable.', 'Stable.', 'Very Stable.'],
-        answer: '',
+        answer: 4,
       },
       {
         type: MULTIPLE_CHOICE,
@@ -54,7 +54,7 @@ class QuizContainer extends Container {
           'Not familiar',
           'New to Investing',
         ],
-        answer: '',
+        answer: 2,
       },
       {
         type: MULTIPLE_CHOICE,
@@ -66,7 +66,7 @@ class QuizContainer extends Container {
           'I want my portfolio to grow moderately in the long-term while minimizing the risk.',
           'I’m comfortable with extreme fluctuations in my portfolio value in order to maximize returns in the long term.',
         ],
-        answer: '',
+        answer: 0,
       },
       {
         type: MULTIPLE_CHOICE,
@@ -78,7 +78,7 @@ class QuizContainer extends Container {
           'Do nothing.',
           'Buy more.',
         ],
-        answer: '',
+        answer: 3,
       },
     ],
   };
