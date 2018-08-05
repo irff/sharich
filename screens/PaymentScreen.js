@@ -3,14 +3,12 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Button
+  Button,
+  Picker
 } from 'react-native';
 import { Subscribe } from 'unstated';
 import styled from 'styled-components';
-import { mix } from 'polished';
-import { Formik } from 'formik';
 
-import QuizContainer, { NUMBER, CURRENCY, MULTIPLE_CHOICE } from '../containers/QuizContainer';
 import { Text, Bold } from '../components/StyledText';
 import { Box } from '../components/Box';
 import { InputStyle } from '../components/common';
@@ -20,7 +18,7 @@ import PaymentContainer from '../containers/PaymentContainer';
 
 export default class PaymentScreen extends React.Component {
   static navigationOptions = {
-    title: 'Payment',
+    title: 'Make Payment',
   };
 
   render() {
@@ -51,22 +49,15 @@ export default class PaymentScreen extends React.Component {
 
             <Box>
               <Text>Payment Method</Text>
-              <InputBox flexDirection="row" alignItems="center">
-                <Box mr={3}>
-                  <Text size={12} color={palette.warmGrey}>
-                  IDR
-                  </Text>
-                </Box>
-                <Box flex={1}>
-                  <TextInput
-                  underlineColorAndroid="transparent"
-                  selectionColor={palette.primary}
-                  keyboardType="numeric"
-                  defaultValue="0"
-                  value={'1200000'}
-                  />
-                </Box>
-              </InputBox>
+              <Picker
+                onValueChange={(value, idx) => (() => state.selectPaymentMethod(value))}
+              >
+                {
+                  state.methods.map( (method, idx) => (
+                    <Picker.Item label={method} value={method}/>
+                  ))
+                }
+              </Picker>
             </Box>
 
             <CoolBox>
@@ -92,7 +83,7 @@ export default class PaymentScreen extends React.Component {
             </CoolBox>
 
             <Box>
-              <Button title='Pay'/>
+              <Button title="I've Paid the Amount Above" onPress={() => this.props.navigation.navigate('PaymentReceived')}/>
             </Box>
 
           </Box>
