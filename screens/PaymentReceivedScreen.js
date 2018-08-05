@@ -34,7 +34,7 @@ export default class PaymentReceivedScreen extends React.Component {
                 <Bold size={16}>Now You're Good to Go</Bold>
                 <Box width={300} mt={1}>
                   <Text color={palette.warmGrey} textAlign="center">
-                    Thank you for trusting Hife as your asset investing platform. Wondering where to
+                    Thank you for trusting Hive as your asset investing platform. Wondering where to
                     check your investment stats? They’re all plastered in your dashboard!
                   </Text>
                 </Box>
