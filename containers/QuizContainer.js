@@ -12,7 +12,7 @@ class QuizContainer extends Container {
         type: NUMBER,
         question: 'What is your age?',
         choices: [],
-        answer: 24
+        answer: '24',
       },
       {
         type: MULTIPLE_CHOICE,
@@ -24,19 +24,19 @@ class QuizContainer extends Container {
         type: MULTIPLE_CHOICE,
         question: 'When do you expect to start drawing income from this account?',
         choices: ['< 1 years', '1-3 years', '3–5 years', '6–10 years', '11 years or more'],
-        answer: 6,
+        answer: 4,
       },
       {
         type: CURRENCY,
         question: 'Pre-tax annual income',
         choices: [],
-        answer: 180000000,
+        answer: '180000000',
       },
       {
         type: CURRENCY,
         question: 'What’s your liquid net worth?',
         choices: [],
-        answer: 225000000,
+        answer: '225000000',
       },
       {
         type: MULTIPLE_CHOICE,
@@ -83,13 +83,8 @@ class QuizContainer extends Container {
     ],
   };
 
-  submitAnswer = answers => {
-    this.setState(state =>
-      produce(state, draft => {
-        answers.forEach((answer, idx) => (draft.quiz[idx].answer = answer));
-      })
-    );
-  };
+  answer = (idx, answer) =>
+    this.setState(state => produce(state, draft => (draft.quiz[idx].answer = answer)));
 }
 
 export default QuizContainer;

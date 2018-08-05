@@ -25,90 +25,89 @@ export default class QuizScreen extends React.Component {
   render() {
     return (
       <Subscribe to={[QuizContainer]}>
-        {({ state, submitAnswer }) => (
+        {({ state, answer }) => (
           <ScrollView>
-            <Formik initialValues={[]} onSubmit={this.submitAndNavigate(submitAnswer)}>
-              {({ values, setFieldValue, handleSubmit }) => (
-                <Box p={24} bg={palette.white}>
-                  <Box pt={26} pb={12}>
-                    <Bold size={20}>Get to Know You</Bold>
+            <Box p={24} bg={palette.white}>
+              <Box pt={26} pb={12}>
+                <Bold size={20}>Get to Know You</Bold>
+              </Box>
+              <Text size={12} color={palette.warmGrey}>
+                Let us understand how’s your behaviour towards your financial circumstances. Please
+                answer these questions, only nine kok!
+              </Text>
+              {state.quiz.map((quiz, quizIndex) => (
+                <Box py={16} key={quiz.question}>
+                  <Box mb={2}>
+                    <Bold size={14}>{quiz.question}</Bold>
                   </Box>
-                  <Text size={12} color={palette.warmGrey}>
-                    Let us understand how’s your behaviour towards your financial circumstances.
-                    Please answer these questions, only nine kok!
-                  </Text>
-                  {state.quiz.map((quiz, quizIndex) => (
-                    <Box py={16} key={quiz.question}>
-                      <Box mb={2}>
-                        <Bold size={14}>{quiz.question}</Bold>
+                  {quiz.type === NUMBER && (
+                    <StyledTextInput
+                      underlineColorAndroid="transparent"
+                      selectionColor={palette.primary}
+                      keyboardType="numeric"
+                      value={quiz.answer}
+                      onChangeText={text => answer(quizIndex, text)}
+                    />
+                  )}
+                  {quiz.type === CURRENCY && (
+                    <InputBox flexDirection="row" alignItems="center">
+                      <Box mr={3}>
+                        <Text size={12} color={palette.warmGrey}>
+                          IDR
+                        </Text>
                       </Box>
-                      {quiz.type === NUMBER && (
-                        <StyledTextInput
+                      <Box flex={1}>
+                        <TextInput
                           underlineColorAndroid="transparent"
                           selectionColor={palette.primary}
                           keyboardType="numeric"
-                          value={values[quizIndex]}
-                          onChangeText={text => setFieldValue(quizIndex, text)}
+                          defaultValue="0"
+                          value={quiz.answer}
+                          onChangeText={text => answer(quizIndex, text)}
                         />
-                      )}
-                      {quiz.type === CURRENCY && (
-                        <InputBox flexDirection="row" alignItems="center">
+                      </Box>
+                    </InputBox>
+                  )}
+                  {quiz.type === MULTIPLE_CHOICE &&
+                    quiz.choices.map((choice, idx) => (
+                      <TouchableOpacity
+                        onPress={() => answer(quizIndex, idx)}
+                        key={`${choice}-${idx}`}
+                      >
+                        <ChoiceBox selected={quiz.answer === idx}>
                           <Box mr={3}>
-                            <Text size={12} color={palette.warmGrey}>
-                              IDR
+                            <Text
+                              size={12}
+                              color={
+                                quiz.answer === idx
+                                  ? mix(0.7, palette.primary, palette.warmGrey)
+                                  : palette.warmGrey
+                              }
+                            >
+                              {String.fromCharCode('A'.charCodeAt(0) + idx)}
                             </Text>
                           </Box>
                           <Box flex={1}>
-                            <TextInput
-                              underlineColorAndroid="transparent"
-                              selectionColor={palette.primary}
-                              keyboardType="numeric"
-                              defaultValue="0"
-                              value={values[quizIndex]}
-                              onChangeText={text => setFieldValue(quizIndex, text)}
-                            />
+                            <Text
+                              color={
+                                quiz.answer === idx
+                                  ? mix(0.7, palette.primary, palette.black)
+                                  : palette.black
+                              }
+                            >
+                              {choice}
+                            </Text>
                           </Box>
-                        </InputBox>
-                      )}
-                      {quiz.type === MULTIPLE_CHOICE &&
-                        quiz.choices.map((choice, idx) => (
-                          <TouchableOpacity
-                            onPress={() => setFieldValue(quizIndex, idx)}
-                            key={`${choice}-${idx}`}
-                          >
-                            <ChoiceBox selected={values[quizIndex] === idx}>
-                              <Box mr={3}>
-                                <Text
-                                  size={12}
-                                  color={
-                                    values[quizIndex] === idx
-                                      ? mix(0.7, palette.primary, palette.warmGrey)
-                                      : palette.warmGrey
-                                  }
-                                >
-                                  {String.fromCharCode('A'.charCodeAt(0) + idx)}
-                                </Text>
-                              </Box>
-                              <Box flex={1}>
-                                <Text
-                                  color={
-                                    values[quizIndex] === idx
-                                      ? mix(0.7, palette.primary, palette.black)
-                                      : palette.black
-                                  }
-                                >
-                                  {choice}
-                                </Text>
-                              </Box>
-                            </ChoiceBox>
-                          </TouchableOpacity>
-                        ))}
-                    </Box>
-                  ))}
-                  <GreenButton title="I'm All Set" onPress={handleSubmit} />
+                        </ChoiceBox>
+                      </TouchableOpacity>
+                    ))}
                 </Box>
-              )}
-            </Formik>
+              ))}
+              <GreenButton
+                title="I'm All Set"
+                onPress={() => this.props.navigation.navigate('RiskProfile')}
+              />
+            </Box>
           </ScrollView>
         )}
       </Subscribe>
