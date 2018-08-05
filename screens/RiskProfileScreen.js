@@ -8,7 +8,7 @@ import { Text, Bold } from '../components/StyledText';
 import { Box } from '../components/Box';
 import { InputStyle } from '../components/common';
 import palette from '../styles/colors';
-import ProgresBar from '../components/ProgressBar';
+import ProgressBar from '../components/ProgressBar';
 import { GreenButton } from '../components/Button';
 
 class PieChartRisk extends React.PureComponent {
@@ -86,7 +86,7 @@ export default class RiskProfileScreen extends React.Component {
                       <Text>{state.assets[state.selected][idx]}%</Text>
                     </Box>
                     <Box py={1}>
-                      <ProgresBar
+                      <ProgressBar
                         width={state.assets[state.selected][idx] / 100}
                         color={state.colors[idx]}
                       />

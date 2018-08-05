@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../styles/colors';
 
-const ProgresBar = ({ width, color }) => (
+const ProgressBar = ({ width, color }) => (
   <Wrapper>
     <Progress width={width} color={color} />
     <Dot color={color} />
@@ -41,4 +41,4 @@ const DummyView = styled.View`
   flex: ${props => props.width};
 `;
 
-export default ProgresBar;
+export default ProgressBar;

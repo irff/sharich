@@ -6,6 +6,8 @@ const palette = {
   ivory: '#fafafa',
   ivoryBorder: '#f5f5f5',
   green: '#68cd81',
+  skyBlue: '#62aaff',
+  aquaGreen: '#18d89f',
 };
 
 export default palette;

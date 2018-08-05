@@ -95,9 +95,16 @@ RiskProfileStack.navigationOptions = {
   ),
 };
 
-const DashboardStack = createStackNavigator({
-  Dashboard: DashboardScreen,
-});
+const DashboardStack = createStackNavigator(
+  {
+    Dashboard: DashboardScreen,
+  },
+  {
+    navigationOptions: {
+      header: null,
+    },
+  }
+);
 
 DashboardStack.navigationOptions = {
   drawerLabel: 'Dashboard',
