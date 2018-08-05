@@ -113,10 +113,17 @@ export default class RiskProfileScreen extends React.Component {
                   </CoolBox>
                 ))}
                 <Box mt={3}>
-                  <GreenButton title="Choose this Risk Profile" onPress={() => this.props.navigation.navigate('Dashboard')} />
+                  <GreenButton
+                    title="Choose this Risk Profile"
+                    onPress={() => this.props.navigation.navigate('Payment')}
+                  />
                 </Box>
                 <Box my={1}>
-                  <GreenButton outline title="Retake this Test"  onPress={() => this.props.navigation.navigate('Quiz')} />
+                  <GreenButton
+                    outline
+                    title="Retake this Test"
+                    onPress={() => this.props.navigation.navigate('Quiz')}
+                  />
                 </Box>
               </Box>
             </ScrollView>
